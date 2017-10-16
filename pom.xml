@@ -24,6 +24,7 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -353,6 +354,4 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
-
 </project>
