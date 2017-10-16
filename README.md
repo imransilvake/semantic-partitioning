@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Maven Template Project for SANSA using Spark
 =============================
 
@@ -15,3 +16,7 @@ mvn clean package
 
 The subsequent steps depend on your IDE. Generally, just import this repository as a Maven project and start using SANSA / Spark. Enjoy it! :)
 
+=======
+# sansa-data-partitioner
+Partitioning Technique of RDF Data using Scala and Spark
+>>>>>>> d55342d1a9cebb07b0684eb869d97cbf232687dd
