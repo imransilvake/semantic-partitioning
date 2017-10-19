@@ -34,18 +34,37 @@ object DataPartitionMain {
     val ops = JenaSparkRDDOps(sparkSession.sparkContext)
     import ops._
 
-    // triples reader
+    // N-Triples reader
     val triplesRDD = NTripleReader.load(sparkSession, JavaURI.create(inputPath))
-    triplesRDD.repartition(8).saveAsTextFile(outputResultsPath)
+
+    // partition the data
+    val data = triplesRDD
+      .filter(
+        line => {
+          // ignore subjects having empty URI
+          !line.getSubject.getURI.isEmpty
+        }
+      )
+      .map( line => {
+        val getSubject    = line.getSubject
+        val getPredicate  = line.getPredicate
+        val getObject     = line.getObject
+
+        (getSubject, getPredicate + " " + getObject)
+      }
+    ).groupByKey()
+
+    // save data to file
+    data.repartition(1).saveAsTextFile(outputResultsPath)
 
     // triples
-    val graph: TripleRDD = triplesRDD
+    // val graph: TripleRDD = triplesRDD
 
     // additional information.
-    println("Number of triples: " + graph.find(ANY, ANY, ANY).distinct.count())
-    println("Number of subjects: " + graph.getSubjects.distinct.count())
-    println("Number of predicates: " + graph.getPredicates.distinct.count())
-    println("Number of objects: " + graph.getObjects.distinct.count())
+    // println("Number of triples: " + graph.find(ANY, ANY, ANY).distinct.count())
+    // println("Number of subjects: " + graph.getSubjects.distinct.count())
+    // println("Number of predicates: " + graph.getPredicates.distinct.count())
+    // println("Number of objects: " + graph.getObjects.distinct.count())
 
     sparkSession.stop
   }
