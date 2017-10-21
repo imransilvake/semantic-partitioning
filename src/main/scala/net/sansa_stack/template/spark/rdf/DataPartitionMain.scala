@@ -6,6 +6,9 @@ import java.net.{URI => JavaURI}
 import net.sansa_stack.rdf.spark.io.NTripleReader
 import net.sansa_stack.rdf.spark.model.{JenaSparkRDDOps, TripleRDD}
 import org.apache.spark.sql.SparkSession
+import java.nio.file.{Files, Paths, Path, SimpleFileVisitor, FileVisitResult}
+import java.nio.file.attribute.BasicFileAttributes
+import java.io.IOException
 
 object Main {
   def main(args: Array[String]) = {
@@ -19,20 +22,30 @@ object Main {
     println("|       RDF Data Partition       |")
     println("=================================")
 
-    // initialize
-    val outputResultsPath = "src/main/resources/output/results/"
-    val inputPath = args(0)
+    // setup
+    val inputPath       = args(0)
+    val outputPath      = "src/main/resources/output/"
+    val symbol   = Map(
+      "space" -> " ",
+      "tabs"  -> "\t",
+      "colon" -> ":",
+      "hash"  -> "#",
+      "dots"  -> "..."
+    )
+    
+    // clear paths
+    removePath(Paths.get(outputPath))
+    // removePath(Paths.get(logsPath))
 
     // spark session
     val sparkSession = SparkSession.builder
       .master("local[*]")
       .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .config("spark.hadoop.validateOutputSpecs", "false")
-      .appName("Data Partition: (" + inputPath + ")")
+      .appName("RDF Data Partition")
       .getOrCreate()
 
     val ops = JenaSparkRDDOps(sparkSession.sparkContext)
-    import ops._
 
     // N-Triples reader
     val nTriplesRDD = NTripleReader.load(sparkSession, JavaURI.create(inputPath))
@@ -60,21 +73,33 @@ object Main {
         val getObject     = line.getObject
 
         // filter out predicate
-        val filteredPredicate = ":" + getPredicate.getURI.split("#")(1)
+        val filteredPredicate = getPredicate.getURI.split(symbol("hash"))(1)
+        var filteredObject: Any = ()
 
         // filter out object
-        val filteredObject = if(getObject.isURI) getObject.getURI.split(".owl#")(1) else getObject
+        if(getPredicate.getURI.contains("type")) {
+          filteredObject = getObject.getURI.split(symbol("hash"))(1)
+        } else {
+          filteredObject = getObject
+        }
 
-        // map format
-        (getSubject, filteredPredicate + " " + filteredObject)
+        // (K,V) pair
+        (getSubject, symbol("colon") + filteredPredicate + symbol("space") + filteredObject + symbol("space"))
       }
-    ).groupByKey()
+    )
+    .reduceByKey(_ + _) // group based on key
+    .map(x => x._1 + symbol("space") + x._2) // output format
 
-    // save data to file
-    partitionedData.repartition(1).saveAsTextFile(outputResultsPath)
+    // output some result on console
+    partitionedData.collect().take(5).foreach(println)
+    println(symbol("dots"))
 
-    partitionedData.foreach(println)
+    // save data to file (1 partitions)
+    if(!partitionedData.partitions.isEmpty) {
+      partitionedData.repartition(1).saveAsTextFile(outputPath)
+    }
 
+    // stop spark
     sparkSession.stop
   }
 
@@ -82,9 +107,24 @@ object Main {
   def nTriplesLog(graph: TripleRDD, ops: JenaSparkRDDOps): Unit = {
     import ops._
 
-    println("Number of N-Triples: " + graph.find(ANY, ANY, ANY).distinct.count())
-    println("Number of subjects: " + graph.getSubjects.distinct.count())
-    println("Number of predicates: " + graph.getPredicates.distinct.count())
-    println("Number of objects: " + graph.getObjects.distinct.count())
+    println("Number of N-Triples: "   + graph.find(ANY, ANY, ANY).distinct.count())
+    println("Number of subjects: "    + graph.getSubjects.distinct.count())
+    println("Number of predicates: "  + graph.getPredicates.distinct.count())
+    println("Number of objects: "     + graph.getObjects.distinct.count())
+  }
+
+  // delete folder
+  def removePath(root: Path): Unit = {
+    Files.walkFileTree(root, new SimpleFileVisitor[Path] {
+      override def visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult = {
+        Files.delete(file)
+        FileVisitResult.CONTINUE
+      }
+
+      override def postVisitDirectory(dir: Path, exc: IOException): FileVisitResult = {
+        Files.delete(dir)
+        FileVisitResult.CONTINUE
+      }
+    })
   }
 }
