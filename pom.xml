@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>SANSA-Template-Maven-Spark</artifactId>
+	<artifactId>SANSA-Data-Partitioner</artifactId>
 	<groupId>net.sansa-stack</groupId>
 	<version>0.2.0</version>
 
-	<name>SANSA-Template-Maven-Spark</name>
-	<description>SANSA Template for Maven within Spark</description>
+	<name>SANSA-Data-Partitioner</name>
+	<description>SANSA Project</description>
 	<organization>
 		<name>Smart Data Analytics (SDA) Research Group</name>
 		<url>http://sda.tech/</url>
@@ -50,6 +50,7 @@
 			<artifactId>spark-core_${scala.binary.version}</artifactId>
 			<version>${spark.version}</version>
 		</dependency>
+
 		<!-- Apache Spark SQL -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
@@ -122,12 +123,10 @@
 			<artifactId>scala-logging-slf4j_${scala.binary.version}</artifactId>
 			<version>2.1.2</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
 		<sourceDirectory>src/main/scala</sourceDirectory>
-		<testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>

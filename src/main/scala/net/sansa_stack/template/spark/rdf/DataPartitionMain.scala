@@ -7,7 +7,7 @@ import net.sansa_stack.rdf.spark.io.NTripleReader
 import net.sansa_stack.rdf.spark.model.{JenaSparkRDDOps, TripleRDD}
 import org.apache.spark.sql.SparkSession
 
-object DataPartitionMain {
+object Main {
   def main(args: Array[String]) = {
     // check input arguments
     if (args.length < 1) {
@@ -15,8 +15,8 @@ object DataPartitionMain {
       System.exit(1)
     }
 
-    println("================================")
-    println("|       Data Partitioner       |")
+    println("==================================")
+    println("|       RDF Data Partition       |")
     println("=================================")
 
     // initialize
@@ -35,37 +35,56 @@ object DataPartitionMain {
     import ops._
 
     // N-Triples reader
-    val triplesRDD = NTripleReader.load(sparkSession, JavaURI.create(inputPath))
+    val nTriplesRDD = NTripleReader.load(sparkSession, JavaURI.create(inputPath))
+
+    // N-Triples log
+    nTriplesLog(nTriplesRDD: TripleRDD, ops)
+
+    println("\n")
+    println("-----------------------")
+    println("Phase 1: Data Partition")
+    println("-----------------------")
 
     // partition the data
-    val data = triplesRDD
+    val partitionedData = nTriplesRDD
       .filter(
         line => {
           // ignore subjects having empty URI
           !line.getSubject.getURI.isEmpty
         }
       )
-      .map( line => {
+      .map(line => {
+        // subject, predicate and object
         val getSubject    = line.getSubject
         val getPredicate  = line.getPredicate
         val getObject     = line.getObject
 
-        (getSubject, getPredicate + " " + getObject)
+        // filter out predicate
+        val filteredPredicate = ":" + getPredicate.getURI.split("#")(1)
+
+        // filter out object
+        val filteredObject = if(getObject.isURI) getObject.getURI.split(".owl#")(1) else getObject
+
+        // map format
+        (getSubject, filteredPredicate + " " + filteredObject)
       }
     ).groupByKey()
 
     // save data to file
-    data.repartition(1).saveAsTextFile(outputResultsPath)
+    partitionedData.repartition(1).saveAsTextFile(outputResultsPath)
 
-    // triples
-    // val graph: TripleRDD = triplesRDD
-
-    // additional information.
-    // println("Number of triples: " + graph.find(ANY, ANY, ANY).distinct.count())
-    // println("Number of subjects: " + graph.getSubjects.distinct.count())
-    // println("Number of predicates: " + graph.getPredicates.distinct.count())
-    // println("Number of objects: " + graph.getObjects.distinct.count())
+    partitionedData.foreach(println)
 
     sparkSession.stop
+  }
+
+  // N-Triples log
+  def nTriplesLog(graph: TripleRDD, ops: JenaSparkRDDOps): Unit = {
+    import ops._
+
+    println("Number of N-Triples: " + graph.find(ANY, ANY, ANY).distinct.count())
+    println("Number of subjects: " + graph.getSubjects.distinct.count())
+    println("Number of predicates: " + graph.getPredicates.distinct.count())
+    println("Number of objects: " + graph.getObjects.distinct.count())
   }
 }

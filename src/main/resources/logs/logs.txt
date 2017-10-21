@@ -1,0 +1,12 @@
+========================================
+|       Data Partition Technique       |
+========================================
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Before Partition:
+[Stage 0:>                                                          (0 + 0) / 2][Stage 0:>                                                          (0 + 2) / 2]Number of triples: 6
+                                                                                Number of subjects: 3
+Number of predicates: 3
+Number of objects: 6
+========================================
+|        Phase 1: Data Partition       |
+========================================
