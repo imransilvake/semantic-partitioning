@@ -1,5 +1,6 @@
 package net.sansa_stack.template.spark.rdf
 import net.sansa_stack.rdf.spark.model.JenaSparkRDDOps
+import java.util.concurrent.TimeUnit
 
 class DataPartition(
                      outputPath: String,
@@ -8,6 +9,9 @@ class DataPartition(
                      nTriplesRDD: org.apache.spark.rdd.RDD[org.apache.jena.graph.Triple]
                    ) extends Serializable {
   def dataPartition(): Unit = {
+    // start process time
+    val startTime = System.nanoTime()
+
     // partition the data
     val partitionedData = nTriplesRDD
       .filter(
@@ -50,9 +54,19 @@ class DataPartition(
     partitionedData.collect().take(5).foreach(println)
     println(this.symbol("dots"))
 
+    // end process time
+    this.partitionProcessedTime(System.nanoTime() - startTime)
+
     // save data to file (1 partitions)
     if(!partitionedData.partitions.isEmpty) {
       partitionedData.repartition(1).saveAsTextFile(this.outputPath)
     }
+  }
+
+  // data partition total processed data
+  def partitionProcessedTime(processedTime: Long): Unit = {
+    println("\nProcessed Time (MILLISECONDS): " + TimeUnit.MILLISECONDS.convert(processedTime, TimeUnit.NANOSECONDS))
+    println("Processed Time (SECONDS): " + TimeUnit.SECONDS.convert(processedTime, TimeUnit.NANOSECONDS))
+    println("Processed Time (MINUTES): " + TimeUnit.MINUTES.convert(processedTime, TimeUnit.NANOSECONDS))
   }
 }

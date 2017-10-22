@@ -65,9 +65,11 @@ object main {
     println("-----------------------------")
     println("Phase 2: Query Implementation")
     println("-----------------------------")
+
+
   }
 
-  // delete folder
+  // delete path
   def removePath(root: Path): Unit = {
     if(Files.exists(root)) {
       Files.walkFileTree(root, new SimpleFileVisitor[Path] {
