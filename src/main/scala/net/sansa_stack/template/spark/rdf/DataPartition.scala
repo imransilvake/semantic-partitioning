@@ -1,14 +1,20 @@
 package net.sansa_stack.template.spark.rdf
+
+import java.nio.file.{Files, Path, Paths}
 import net.sansa_stack.rdf.spark.model.JenaSparkRDDOps
 import java.util.concurrent.TimeUnit
+import scala.collection.mutable.ArrayBuffer
+import scala.io.Source
+import scala.collection.JavaConversions._
 
 class DataPartition(
                      outputPath: String,
                      symbol: Map[String, String],
                      ops: JenaSparkRDDOps,
-                     nTriplesRDD: org.apache.spark.rdd.RDD[org.apache.jena.graph.Triple]
+                     nTriplesRDD: org.apache.spark.rdd.RDD[org.apache.jena.graph.Triple],
+                     partitionedDataPath: String
                    ) extends Serializable {
-  def dataPartition(): Unit = {
+  def executePartition(): Unit = {
     // start process time
     val startTime = System.nanoTime()
 
@@ -55,18 +61,39 @@ class DataPartition(
     println(this.symbol("dots"))
 
     // end process time
-    this.partitionProcessedTime(System.nanoTime() - startTime)
+    this.partitionTime(System.nanoTime() - startTime)
 
-    // save data to file (1 partitions)
+    // save data to file (8 partition)
     if(!partitionedData.partitions.isEmpty) {
-      partitionedData.repartition(1).saveAsTextFile(this.outputPath)
+      partitionedData.repartition(8).saveAsTextFile(this.outputPath)
     }
   }
 
-  // data partition total processed data
-  def partitionProcessedTime(processedTime: Long): Unit = {
+  // total partition time
+  def partitionTime(processedTime: Long): Unit = {
     println("\nProcessed Time (MILLISECONDS): " + TimeUnit.MILLISECONDS.convert(processedTime, TimeUnit.NANOSECONDS))
     println("Processed Time (SECONDS): " + TimeUnit.SECONDS.convert(processedTime, TimeUnit.NANOSECONDS))
     println("Processed Time (MINUTES): " + TimeUnit.MINUTES.convert(processedTime, TimeUnit.NANOSECONDS))
+  }
+
+  // get partition data
+  def getPartitionData: ArrayBuffer[String] = {
+    var lines: ArrayBuffer[String] = ArrayBuffer()
+
+    Files
+      .newDirectoryStream(Paths.get(this.partitionedDataPath))
+      .filter(
+        file => {
+          // ignore files extension .crc
+          file.toString.contains("part-") && !file.toString.contains(".crc")
+        }
+      )
+      .foreach(file => {
+        for (line <- Source.fromFile(file.toString).getLines) {
+          lines += line
+        }
+      })
+
+    lines
   }
 }

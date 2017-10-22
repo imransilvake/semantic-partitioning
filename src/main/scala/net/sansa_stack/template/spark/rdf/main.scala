@@ -9,6 +9,7 @@ import net.sansa_stack.rdf.spark.model.{JenaSparkRDDOps, TripleRDD}
 import java.net.{URI => JavaURI}
 import net.sansa_stack.rdf.spark.io.NTripleReader
 import org.apache.spark.sql.SparkSession
+import scala.collection.mutable.ArrayBuffer
 
 object main {
   def main(args: Array[String]): Unit = {
@@ -23,8 +24,9 @@ object main {
     println("=================================")
 
     // setup
-    val inputPath       = args(0)
-    val outputPath      = "src/main/resources/output/"
+    val inputPath = args(0)
+    val outputPath = "src/main/resources/output/partitioned-data/"
+    val partitionedDataPath = "src/main/resources/output/partitioned-data/"
     val symbol   = Map(
       "space" -> " " * 3,
       "tabs"  -> "\t",
@@ -50,7 +52,7 @@ object main {
     // N-Triples reader
     val nTriplesRDD = NTripleReader.load(sparkSession, JavaURI.create(inputPath))
 
-    // N-Triples log
+    // output N-Triples log
     nTriplesLog(nTriplesRDD: TripleRDD, ops)
 
     println("\n")
@@ -58,13 +60,20 @@ object main {
     println("Phase 1: Data Partition")
     println("-----------------------")
 
-    val dp = new DataPartition(outputPath, symbol, ops, nTriplesRDD)
-    dp.dataPartition()
+    val dp = new DataPartition(outputPath, symbol, ops, nTriplesRDD, partitionedDataPath)
+    dp.executePartition()
+    val partitionData = dp.getPartitionData
+
+    // output number of triples
+    numOfTriples(partitionData)
 
     println("\n")
-    println("-----------------------------")
-    println("Phase 2: Query Implementation")
-    println("-----------------------------")
+    println("---------------------")
+    println("Phase 2: Query System")
+    println("---------------------")
+
+    // get partition data
+    // val qs = new QuerySystem()
 
 
   }
@@ -94,5 +103,10 @@ object main {
     println("Number of subjects: "    + graph.getSubjects.distinct.count())
     println("Number of predicates: "  + graph.getPredicates.distinct.count())
     println("Number of objects: "     + graph.getObjects.distinct.count())
+  }
+
+  // number of triples
+  def numOfTriples(partitionData: ArrayBuffer[String]): Unit = {
+    println("\nNumber of triples (after data partition): " + partitionData.length)
   }
 }

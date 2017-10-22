@@ -1,0 +1,106 @@
+SELECT ?student ?professor
+WHERE 
+  { ?publication :publicationAuthor ?student .
+    ?publication :publicationAuthor ?professor .
+    ?student :takesCourse <http://www.Department0.University0.edu/GraduateCourse16> .
+  }
+  
+SELECT ?X
+WHERE
+  { ?X a :GraduateStudent .
+    ?X :takesCourse <http://www.Department0.University0.edu/GraduateCourse0> .
+  }
+  
+SELECT ?X ?Y ?Z
+WHERE
+  { ?X a :GraduateStudent .
+    ?X :memberOf ?Z .
+    ?Z a :Department .
+    ?Z :subOrganizationOf ?Y .
+    ?X :undergraduateDegreeFrom ?Y .
+    ?Y a :University .
+  }  
+
+SELECT ?X
+WHERE
+  { ?X a :Publication .
+    ?X :publicationAuthor <http://www.Department0.University0.edu/AssistantProfessor0> .
+  }
+
+SELECT ?X ?Y1 ?Y2 ?Y3
+WHERE
+  { ?X a :Professor .
+    ?X :worksFor <http://www.Department0.University0.edu> .
+    ?X :name ?Y1 .
+    ?X emailAddress ?Y2 .
+    ?X :telephone ?Y3 .
+  }
+
+SELECT ?X
+WHERE
+  { ?X a :Person .
+    ?X :memberOf <http://www.Department0.University0.edu> .
+  }
+
+SELECT ?X
+WHERE
+  { ?X a :Student .
+  }
+
+SELECT ?X ?Y
+WHERE
+  { <http://www.Department0.University0.edu/AssociateProfessor0> :teacherOf ?Y .
+    ?Y a :Course .
+    ?X :takesCourse ?Y .
+    ?X a :Student .
+  }
+
+SELECT ?X ?Y ?Z
+WHERE
+  { ?Y :subOrganizationOf <http://www.University0.edu> .
+    ?Y a :Department .
+    ?X :memberOf ?Y .
+    ?X a :Student .
+    ?X :emailAddress ?Z .
+  }
+  
+SELECT ?X ?Y ?Z
+WHERE
+  { ?X a :Student .
+    ?X :advisor ?Y .
+	?Y a :Faculty .
+	?X :takesCourse ?Z .
+	?Y :teacherOf ?Z .
+	?Z a :Course .
+  }
+  
+SELECT ?X
+WHERE
+  { ?X a :Student .
+    ?X :takesCourse <http://www.Department0.University0.edu/GraduateCourse0> .
+  }
+
+SELECT ?X
+WHERE
+  { ?X a :ResearchGroup .
+    ?X :subOrganizationOf <http://www.University0.edu> .
+  }
+
+SELECT ?X ?Y
+WHERE
+  { ?Y :subOrganizationOf <http://www.University0.edu> .
+    ?Y a :Department .
+    ?X :worksFor ?Y .
+    ?X a :Chair .
+  }
+
+SELECT ?X
+WHERE
+  { ?X a :Person .
+    <http://www.University0.edu> :hasAlumnus ?X .
+  }
+
+SELECT ?X
+WHERE
+  { ?X a :UndergraduateStudent .
+  }

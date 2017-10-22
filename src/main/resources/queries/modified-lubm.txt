@@ -1,0 +1,18 @@
+SELECT ?X
+WHERE
+  { ?X a :GraduateStudent .
+    ?X :takesCourse <http://www.Department0.University0.edu/GraduateCourse0> .
+  }
+  
+SELECT ?X ?Y ?Z
+WHERE
+  { ?X :advisor ?Y .
+	?X :takesCourse ?Z .
+	?Y :teacherOf ?Z .
+	?Z a :Course .
+  }
+  
+SELECT ?X
+WHERE
+  { ?X a :UndergraduateStudent .
+  }
