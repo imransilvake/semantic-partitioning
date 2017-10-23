@@ -1,6 +1,6 @@
 package net.sansa_stack.template.spark.rdf
 
-import java.nio.file.{Files, Path, Paths}
+import java.nio.file.{Files, Paths}
 import net.sansa_stack.rdf.spark.model.JenaSparkRDDOps
 import java.util.concurrent.TimeUnit
 import scala.collection.mutable.ArrayBuffer
@@ -12,9 +12,10 @@ class DataPartition(
                      symbol: Map[String, String],
                      ops: JenaSparkRDDOps,
                      nTriplesRDD: org.apache.spark.rdd.RDD[org.apache.jena.graph.Triple],
-                     partitionedDataPath: String
+                     partitionedDataPath: String,
+                     numOfFilesPartition: Int
                    ) extends Serializable {
-  def executePartition(): Unit = {
+  def executePartition: Unit = {
     // start process time
     val startTime = System.nanoTime()
 
@@ -65,7 +66,7 @@ class DataPartition(
 
     // save data to file (8 partition)
     if(!partitionedData.partitions.isEmpty) {
-      partitionedData.repartition(8).saveAsTextFile(this.outputPath)
+      partitionedData.repartition(this.numOfFilesPartition).saveAsTextFile(this.outputPath)
     }
   }
 

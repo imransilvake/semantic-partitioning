@@ -1,4 +1,10 @@
+jh
 SELECT ?author ?publication
 WHERE { 
 	?publication :publicationAuthor ?author .
+}
+ji
+SELECT ?publication
+WHERE {
+	?publication :author ?Y .
 }

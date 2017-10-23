@@ -24,11 +24,14 @@ object main {
     println("=================================")
 
     // setup
-    val inputPath = args(0)
-    val outputPath = "src/main/resources/output/partitioned-data/"
-    val partitionedDataPath = "src/main/resources/output/partitioned-data/"
-    val symbol   = Map(
+    val inputPath: String = args(0)
+    val outputPath: String = "src/main/resources/output/partitioned-data/"
+    val partitionedDataPath: String = "src/main/resources/output/partitioned-data/"
+    val queryPath: String = args(1)
+    val numOfFilesPartition: Int = 2
+    val symbol = Map(
       "space" -> " " * 3,
+      "blank" -> " ",
       "tabs"  -> "\t",
       "colon" -> ":",
       "hash"  -> "#",
@@ -43,7 +46,6 @@ object main {
     val sparkSession = SparkSession.builder
       .master("local[*]")
       .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
-      .config("spark.hadoop.validateOutputSpecs", "false")
       .appName("RDF Data Partition")
       .getOrCreate()
 
@@ -60,12 +62,19 @@ object main {
     println("Phase 1: Data Partition")
     println("-----------------------")
 
-    val dp = new DataPartition(outputPath, symbol, ops, nTriplesRDD, partitionedDataPath)
-    dp.executePartition()
+    val dp = new DataPartition(
+      outputPath,
+      symbol,
+      ops,
+      nTriplesRDD,
+      partitionedDataPath,
+      numOfFilesPartition
+    )
+    dp.executePartition
     val partitionData = dp.getPartitionData
 
-    // output number of triples
-    numOfTriples(partitionData)
+    // output number of N-Triples
+    numOfNTriples(partitionData)
 
     println("\n")
     println("---------------------")
@@ -73,9 +82,8 @@ object main {
     println("---------------------")
 
     // get partition data
-    // val qs = new QuerySystem()
-
-
+    val qs = new QuerySystem(queryPath, symbol)
+    qs.queriesParser
   }
 
   // delete path
@@ -105,8 +113,8 @@ object main {
     println("Number of objects: "     + graph.getObjects.distinct.count())
   }
 
-  // number of triples
-  def numOfTriples(partitionData: ArrayBuffer[String]): Unit = {
-    println("\nNumber of triples (after data partition): " + partitionData.length)
+  // number of N-Triples
+  def numOfNTriples(partitionData: ArrayBuffer[String]): Unit = {
+    println("\nNumber of N-Triples: " + partitionData.length)
   }
 }
