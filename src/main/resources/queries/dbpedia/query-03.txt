@@ -1,0 +1,6 @@
+SELECT ?X ?Y
+WHERE {
+    ?X :type :Thing .
+    ?X :subject ?Y .
+    ?X :long ?Z .
+}

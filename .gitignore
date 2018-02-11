@@ -1,0 +1,9 @@
+# Files
+.DS_Store
+.idea
+SANSA-Semantic-Partitioning.iml
+
+# Folders
+src/main/resources/log/
+src/main/resources/output/
+target/

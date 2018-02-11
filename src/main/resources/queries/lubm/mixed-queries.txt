@@ -1,0 +1,40 @@
+SELECT *
+WHERE {
+    {
+        ?publication :publicationAuthor ?author .
+        FILTER (
+            ?publication = <http://www.Department9.University0.edu/AssociateProfessor7/Publication6> ||
+            ?author = <http://www.Department9.University0.edu/GraduateStudent58> &&
+            isURI(?publication) &&
+            !isBlank(?publication)
+        )
+    }
+    UNION
+    { ?X :type :UndergraduateStudent . }
+    UNION
+    {
+        ?X :advisor ?Y .
+        ?X :takesCourse ?Z .
+        ?Y :teacherOf ?Z .
+        ?Z :type :Course .
+    }
+    UNION
+    {
+        ?X :type :GraduateStudent .
+        ?X :takesCourse <http://www.Department0.University0.edu/GraduateCourse0> .
+    }
+}
+
+SELECT ?X ?Y
+WHERE {
+    ?X :advisor ?Y .
+    ?X :takesCourse ?Z .
+    ?Y :teacherOf ?Z .
+    ?Z :type :Course .
+}
+
+SELECT ?X
+WHERE {
+    ?X :type :UndergraduateStudent .
+}
+LIMIT 30

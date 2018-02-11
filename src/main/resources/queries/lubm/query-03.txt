@@ -1,0 +1,8 @@
+SELECT ?X ?Y ?Z
+WHERE {
+    ?X :advisor ?Y .
+    ?X :takesCourse ?Z .
+    ?Y :teacherOf ?Z .
+    ?Z :type :Course .
+}
+

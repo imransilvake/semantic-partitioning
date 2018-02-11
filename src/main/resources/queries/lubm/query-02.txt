@@ -1,0 +1,5 @@
+SELECT ?X
+WHERE {
+    ?X :type :GraduateStudent .
+    ?X :takesCourse <http://www.Department0.University0.edu/GraduateCourse0> .
+}
