@@ -31,6 +31,11 @@ object Semantic {
     }
 
     def run(input: String, queries: String, partitions: String, output: String): Unit = {
+        // remove path files
+        removePathFiles(Paths.get(partitions))
+        removePathFiles(Paths.get(output))
+        // removePathFiles(Paths.get(System.getProperty("LogFilePath")))
+
         consoleLog.info("=================================")
         consoleLog.info("| SANSA - Semantic Partitioning |")
         consoleLog.info("=================================")
@@ -60,10 +65,6 @@ object Semantic {
             "asterisk" -> "*",
             "up-arrows" -> "^^"
         )
-
-        // remove path files
-        removePathFiles(Paths.get(partitions))
-        removePathFiles(Paths.get(output))
 
         // spark session
         val spark = SparkSession.builder
@@ -141,13 +142,13 @@ object Semantic {
 
         opt[String]('i', "input").required().valueName("<path>").
             action((x, c) => c.copy(in = x)).
-            text("path to file that contains the data (in N-Triples format)")
+            text("path to file that contains RDF data (in N-Triples format)")
 
-        opt[String]('q', "queries").required().valueName("<directory>").
+        opt[String]('q', "queries").required().valueName("<path>").
             action((x, c) => c.copy(queries = x)).
-            text("the SPARQL query list")
+            text("path to file that contains SPARQL query list")
 
-        opt[String]('o', "out").required().valueName("<directory>").
+        opt[String]('o', "output").required().valueName("<directory>").
             action((x, c) => c.copy(out = x)).
             text("the output directory")
 

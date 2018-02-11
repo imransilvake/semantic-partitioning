@@ -33,7 +33,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 /Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt
 --partitions
 /Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/output/partitioned-data/
---out
+--output
 /Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/output/query-result/
 ```
 
