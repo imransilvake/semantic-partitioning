@@ -125,14 +125,14 @@ An example of how to run the app on the cluster.
 
 #### Local
 ```
-/usr/local/Cellar/apache-spark/2.2.1/bin/spark-submit \
+spark-submit \
 --class net.sansa_stack.semantic_partitioning.Semantic \
 --master local[*] \
-/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/target/SANSA-Semantic-Partitioning-0.3.1-SNAPSHOT.jar \
---input /Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/input/lubm/sample.nt \
---queries /Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt \
---partitions /Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/output/partitioned-data/ \
---out /Users/imransilvake/Downloads/test/run/
+--jar /SANSA-Semantic-Partitioning/target/SANSA-Semantic-Partitioning-0.3.1-SNAPSHOT.jar \
+--input /SANSA-Semantic-Partitioning/src/main/resources/input/lubm/sample.nt \
+--queries /SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt \
+--partitions /SANSA-Semantic-Partitioning/src/main/resources/output/partitioned-data/ \
+--output /SANSA-Semantic-Partitioning/src/main/resources/output/query-result/
 ```
 
 
