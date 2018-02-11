@@ -25,16 +25,19 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 3. DBpedia - [Datasets](http://benchmark.dbpedia.org/)
 
 
-## Program Arguments
+## Program Options Setting
+
+#### VM Options
 ```
---input
-/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/input/lubm/sample.nt
---queries
-/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt
---partitions
-/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/output/partitioned-data/
---output
-/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/output/query-result/
+-DLogFilePath=/SANSA-Semantic-Partitioning/src/main/resources/log/console.log
+```
+
+#### Program Arguments
+```
+--input /SANSA-Semantic-Partitioning/src/main/resources/input/lubm/sample.nt
+--queries /SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt
+--partitions /SANSA-Semantic-Partitioning/src/main/resources/output/partitioned-data/
+--output /SANSA-Semantic-Partitioning/src/main/resources/output/query-result/
 ```
 
 
