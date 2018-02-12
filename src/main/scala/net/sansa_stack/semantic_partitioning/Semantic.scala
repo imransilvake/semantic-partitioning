@@ -32,7 +32,6 @@ object Semantic {
 
     def run(input: String, queries: String, partitions: String, output: String): Unit = {
         // remove path files
-        removePathFiles(Paths.get(System.getProperty("LogFilePath")))
         removePathFiles(Paths.get(partitions))
         removePathFiles(Paths.get(output))
 
