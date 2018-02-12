@@ -136,12 +136,12 @@ spark-submit \
 --output /SANSA-Semantic-Partitioning/src/main/resources/output/query-result/
 ```
 
-## Useful commands
+## Useful Commands
 
 #### General
 - Check running processes: `jps`
 - Kill process: `kill -9 PID`
-- Copy from local to remote: `scp -r file_or_dir_path UserName@akswnc4.aksw.uni-leipzig.de:path`
+- Copy from local to remote: `scp -r /path/to/file UserName@server.com:/path/to/destination`
 
 #### Hadoop
 - Check Hadoop hostname and port: `hdfs getconf -confKey fs.default.name`
