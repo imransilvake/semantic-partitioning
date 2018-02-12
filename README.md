@@ -128,13 +128,13 @@ An example of how to run the app on the cluster.
 spark-submit \
 --class net.sansa_stack.semantic_partitioning.Semantic \
 --master local[*] \
---jar /SANSA-Semantic-Partitioning/target/SANSA-Semantic-Partitioning-0.3.1-SNAPSHOT.jar \
+--driver-java-options "-DLogFilePath=/Users/imransilvake/Downloads/test/run/" \
+/SANSA-Semantic-Partitioning/target/SANSA-Semantic-Partitioning-0.3.1-SNAPSHOT.jar \
 --input /SANSA-Semantic-Partitioning/src/main/resources/input/lubm/sample.nt \
 --queries /SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt \
 --partitions /SANSA-Semantic-Partitioning/src/main/resources/output/partitioned-data/ \
 --output /SANSA-Semantic-Partitioning/src/main/resources/output/query-result/
 ```
-
 
 ## Useful commands
 
