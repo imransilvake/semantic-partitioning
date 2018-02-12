@@ -141,6 +141,7 @@ spark-submit \
 #### General
 - Check running processes: `jps`
 - Kill process: `kill -9 PID`
+- Copy from local to remote: `scp -r queries/ UserName@akswnc4.aksw.uni-leipzig.de+titan:/home/ImranKhan`
 
 #### Hadoop
 - Check Hadoop hostname and port: `hdfs getconf -confKey fs.default.name`
