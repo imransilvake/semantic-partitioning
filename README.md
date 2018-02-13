@@ -124,16 +124,30 @@ WHERE {
 An example of how to run the app on the cluster.
 
 #### Local
+###### Without HDFS
 ```
 spark-submit \
 --class net.sansa_stack.semantic_partitioning.Semantic \
 --master local[*] \
---driver-java-options "-DLogFilePath=/Users/imransilvake/Downloads/test/run/" \
-/SANSA-Semantic-Partitioning/target/SANSA-Semantic-Partitioning-0.3.1-SNAPSHOT.jar \
---input /SANSA-Semantic-Partitioning/src/main/resources/input/lubm/sample.nt \
---queries /SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt \
---partitions /SANSA-Semantic-Partitioning/src/main/resources/output/partitioned-data/ \
---output /SANSA-Semantic-Partitioning/src/main/resources/output/query-result/
+--driver-java-options "-Dlog4j.configuration=file:/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/log4j.properties -DLogFilePath=/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/log/console.log/src/main/resources/log/console.log" \
+/SANSA-Semantic-Partitioning-0.3.1-SNAPSHOT.jar \
+--input /sample.nt \
+--queries /query-01.txt \
+--partitions /output/partitioned-data/ \
+--output /output/results-data/
+```
+
+###### With HDFS
+```
+spark-submit \
+--class net.sansa_stack.semantic_partitioning.Semantic \
+--master local[*] \
+--driver-java-options "-Dlog4j.configuration=file:/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/log4j.properties -DLogFilePath=/Users/imransilvake/IdeaProjects/SANSA-Semantic-Partitioning/src/main/resources/log/console.log/src/main/resources/log/console.log" \
+hdfs://localhost:9000/user/imransilvake/SANSA-Semantic-Partitioning-0.3.1-SNAPSHOT.jar \
+--input hdfs://localhost:9000/user/imransilvake/sample.nt \
+--queries hdfs://localhost:9000/user/imransilvake/query-01.txt \
+--partitions /output/partitioned-data/ \
+--output /output/results-data/
 ```
 
 ## Useful Commands

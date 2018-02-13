@@ -337,8 +337,8 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.citusdata.hadoop.HadoopTest</mainClass>
+                            <classpathPrefix>${project.build.directory}/lib</classpathPrefix>
+                            <mainClass>net.sansa_stack.semantic_partitioning.Semantic</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

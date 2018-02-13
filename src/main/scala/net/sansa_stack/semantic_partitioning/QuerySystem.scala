@@ -4,7 +4,6 @@ package net.sansa_stack.semantic_partitioning
 // imports
 import scala.collection.mutable.ArrayBuffer
 import java.util.Scanner
-import java.io.File
 import java.util.concurrent.TimeUnit
 import java.io._
 import com.google.common.collect.ArrayListMultimap
@@ -13,6 +12,10 @@ import java.util.StringTokenizer
 import org.apache.spark.rdd._
 import scala.util.Try
 import org.apache.log4j.Logger
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.FileSystem
+import java.net.URI
+import org.apache.hadoop.fs.Path
 
 /*
  * QuerySystem - query on semantic partition data
@@ -84,8 +87,10 @@ class QuerySystem(
 
     // fetch queries from input file
     def fetchQueries: ArrayBuffer[ArrayBuffer[String]] = {
-        val file = new File(queryInputPath)
-        val fileScanner = new Scanner(file)
+        val fileSystem = FileSystem.get(new URI(queryInputPath), new Configuration())
+        val path = new Path(queryInputPath)
+        val stream = fileSystem.open(path)
+        val fileScanner = new Scanner(stream)
         var queryList: ArrayBuffer[ArrayBuffer[String]] = ArrayBuffer()
 
         // scan lines
@@ -1241,10 +1246,9 @@ class QuerySystem(
             case ">=" => a > b || a.equals(b)
             case "<=" => a < b || a.equals(b)
             case "!=" => !a.equals(b)
-            case _ => {
+            case _ =>
                 consoleLog.error(s"FILTER - Wrong Operator Found: $operator")
                 throw new IllegalStateException(s"FILTER - Wrong Operator Found: $operator")
-            }
         }
 
         result
@@ -1276,10 +1280,9 @@ class QuerySystem(
                     bool = true
 
                 bool
-            case _ => {
+            case _ =>
                 consoleLog.error(s"FILTER - Wrong functions found: $fName")
                 throw new IllegalStateException(s"FILTER - Wrong functions found: $fName")
-            }
         }
 
         result
