@@ -1,4 +1,4 @@
-# SANSA Semantic Partitioning
+# SANSA - Semantic Partitioning
 RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
 
 
