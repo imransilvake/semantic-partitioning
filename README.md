@@ -25,7 +25,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 3. DBpedia - [Datasets](http://benchmark.dbpedia.org/)
 
 
-## Program Options Setting
+## Application Settings
 
 #### VM Options
 ```
@@ -120,7 +120,7 @@ WHERE {
 ```
 
 
-## Run on Spark Cluster
+## Submitting Applications
 An example of how to run the app on the cluster.
 
 #### Local
