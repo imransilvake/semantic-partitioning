@@ -150,6 +150,20 @@ hdfs://localhost:9000/user/imransilvake/SANSA-Semantic-Partitioning-0.3.1-SNAPSH
 --output /output/results-data/
 ```
 
+#### Standalone Cluster
+```
+spark-submit \
+--class net.sansa_stack.semantic_partitioning.Semantic \
+--master spark://172.18.160.16:3077 \
+--driver-java-options "-Dlog4j.configuration=file:/data/home/ImranKhan/log4j.properties -DLogFilePath=/data/home/ImranKhan/console.log" \
+hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
+--input hdfs://172.18.160.17:54310/ImranKhan/datasets/lubm/small.nt \
+--queries hdfs://172.18.160.17:54310/ImranKhan/queries/lubm/query-01.txt \
+--partitions /data/home/ImranKhan/partitioned-data/ \
+--output /data/home/ImranKhan/results-data/
+```
+
+
 ## Useful Commands
 
 #### General
