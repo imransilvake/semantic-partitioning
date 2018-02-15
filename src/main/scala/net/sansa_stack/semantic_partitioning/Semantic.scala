@@ -80,12 +80,14 @@ object Semantic {
         consoleLog.info("----------------------")
 
         // class instance: Class RDFPartition and set the partition data
-        val partitionData = new RDFPartition(
+        val ps = new RDFPartition(
             symbol,
             nTriplesRDD,
             partitions,
             numOfFilesPartition
-        ).partitionGraph()
+        )
+        ps.run()
+        val partitionData = ps._partitionData
 
         // count total number of N-Triples
         countNTriples(Left(nTriplesRDD))
