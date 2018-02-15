@@ -123,7 +123,7 @@ WHERE {
 ## Submitting Applications
 An example of how to run the app on the cluster.
 
-#### Local
+#### Local `master("local[*]")`
 ###### Without HDFS
 ```
 spark-submit \
@@ -150,7 +150,7 @@ hdfs://localhost:9000/user/imransilvake/SANSA-Semantic-Partitioning-0.3.1-SNAPSH
 --output /output/results-data/
 ```
 
-#### Standalone Cluster
+#### Standalone Cluster `master("spark://172.18.160.16:3077")`
 ```
 spark-submit \
 --class net.sansa_stack.semantic_partitioning.Semantic \
