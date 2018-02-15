@@ -645,6 +645,8 @@ class QuerySystem(
         if(tmpRDD.partitions.nonEmpty) {
             // only one WHERE clause triple query
             if (numOfWhereClauseTriples.equals(1)) {
+                consoleLog.info(s"Total Results: ${tmpRDD.count}")
+
                 var outputRDD = tmpRDD
                     .filter(data => {
                         var status = false
@@ -1055,6 +1057,8 @@ class QuerySystem(
             })
 
         if (tmpRDD.partitions.nonEmpty) {
+            consoleLog.info(s"Total Results: ${tmpRDD.count}")
+
             // case: UNION
             if (_unionOp(qID)("isUnion")) {
                 if (_unionOp(qID)("first"))
