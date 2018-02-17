@@ -90,8 +90,8 @@ object Semantic {
         val partitionData = ps._partitionData
 
         // count total number of N-Triples
-        consoleLog.info(s"Number of N-Triples before partition: ${nTriplesRDD.count}")
-        consoleLog.info(s"Number of N-Triples after partition: ${partitionData.count}")
+        // consoleLog.info(s"Number of N-Triples before partition: ${nTriplesRDD.count}")
+        // consoleLog.info(s"Number of N-Triples after partition: ${partitionData.count}")
 
         consoleLog.info("----------------------")
         consoleLog.info("Phase 2: SPARQL System")
