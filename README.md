@@ -2,7 +2,7 @@
 RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
 
 
-##  Benchmarks (N-Triples Datasets): 
+##  Benchmarks (in N-Triples): 
 
 1. LUBM
     1. Clone this project: [LUBM](https://github.com/rvesse/lubm-uba)
