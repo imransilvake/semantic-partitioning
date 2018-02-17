@@ -173,9 +173,11 @@ hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
 
 #### Hadoop
 - Check Hadoop hostname and port: `hdfs getconf -confKey fs.default.name`
-- Put files on HDFS: `Hadoop fs -put file /user/imransilvake`
-- Check files on HDFS: `Hadoop fs -ls`
-- Remove Files on HDFS: `hadoop fs -rm -R path_of_file_or_dir`
+- Put files on HDFS: `Hadoop fs -put file path`
+- Check files on HDFS: `Hadoop fs -ls /`
+- Remove Files on HDFS: `hadoop fs -rm -R path`
+- Make a directory on HDFS: `hadoop fs -mkdir path`
+- Move location on HDFS: `hadoop fs -mv source destination`
 
 #### Spark
 - Run Spark Shell: `spark-shell`
