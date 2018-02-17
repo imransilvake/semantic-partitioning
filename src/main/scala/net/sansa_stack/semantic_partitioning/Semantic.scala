@@ -90,8 +90,8 @@ object Semantic {
         val partitionData = ps._partitionData
 
         // count total number of N-Triples
-        countNTriples(Left(nTriplesRDD))
-        countNTriples(Right(partitionData))
+        consoleLog.info(s"Number of N-Triples before partition: ${nTriplesRDD.count}")
+        consoleLog.info(s"Number of N-Triples after partition: ${partitionData.count}")
 
         consoleLog.info("----------------------")
         consoleLog.info("Phase 2: SPARQL System")
@@ -108,14 +108,6 @@ object Semantic {
         qs.run()
 
         spark.close()
-    }
-
-    // count total number of N-Triples
-    def countNTriples(dataRDD: Either[RDD[Triple], RDD[String]]): Unit = {
-        dataRDD match {
-            case Left(x)  => consoleLog.info(s"Number of N-Triples before partition: ${x.distinct.count}")
-            case Right(x) => consoleLog.info(s"Number of N-Triples after partition: ${x.distinct.count}")
-        }
     }
 
     // remove path files
