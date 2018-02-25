@@ -7,8 +7,6 @@ import java.net.{URI => JavaURI}
 import java.nio.file.attribute.BasicFileAttributes
 import java.nio.file._
 import net.sansa_stack.rdf.spark.io.NTripleReader
-import org.apache.jena.graph.Triple
-import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import scopt.OptionParser
 import org.apache.log4j.Logger
