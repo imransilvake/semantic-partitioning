@@ -1,4 +1,4 @@
-## Efficient and Scalable in-memory Semantic Partitioning for RDF Data
+# Efficient and Scalable in-memory Partitioning for RDF Data
 RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
 
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
