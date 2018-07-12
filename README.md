@@ -1,10 +1,10 @@
-# Efficient and Scalable in-memory Semantic Partitioning for RDF Data
+## Efficient and Scalable in-memory Semantic Partitioning for RDF Data
 RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
 
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
 
 
-##  Benchmarks (in N-Triples): 
+###  Benchmarks (in N-Triples): 
 
 1. LUBM
     1. Clone this project: [LUBM](https://github.com/rvesse/lubm-uba)
@@ -27,7 +27,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 3. DBpedia - [Datasets](http://benchmark.dbpedia.org/)
 
 
-## Application Settings
+### Application Settings
 
 #### VM Options
 ```
@@ -43,7 +43,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 ```
 
 
-## SPARQL Operators
+### SPARQL Operators
 ###### Note: All operators are case insensitive
  - **Mandatory**: ```SELECT, WHERE```
  - **Optional**: ```LIMIT, UNION, FILTER```
@@ -76,7 +76,7 @@ FILTER (
 ```
 
 
-## SPARQL Queries
+### SPARQL Queries
 #### Important: Strictly follow the pattern of SPARQL queries in order to avoid errors.
 ###### Note: Examples shown below are related to LUBM benchmark
 
@@ -122,7 +122,7 @@ WHERE {
 ```
 
 
-## Submitting Applications
+### Submitting Applications
 An example of how to run the app on the cluster.
 
 #### Local `master("local[*]")`
@@ -166,7 +166,7 @@ hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
 ```
 
 
-## Useful Commands
+### Useful Commands
 
 #### General
 - Check running processes: `jps`
@@ -185,7 +185,7 @@ hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
 - Run Spark Shell: `spark-shell`
 
 
-## Future Work
+### Future Work
  - Implement Prefix for SPARQL queries
  - Add more operators
  - Add support in FILTER: 
