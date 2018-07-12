@@ -38,12 +38,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
  - **Logical:** ```!, &&, ||```
  - **Comparison:** ```<, >, = or ==, >=, <=, !=```
  - **SPARQL Tests:** ```isURI, isBlank, isLiteral```
-    1. isURI: ```FILTER (isURI(?author))```
-    2. isBlank: ```FILTER (isBlank(?author))```
-    3. isLiteral: ```FILTER (isLiteral(?author))```
  - **SPARQL Accessors:** ```lang, datatype```
-    1. lang: ```FILTER (lang(?name) = "ES")```
-    2. datatype: ```FILTER (datatype(?name) = string)```
 
 ###### Single Line
 ```    
