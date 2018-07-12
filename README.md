@@ -6,9 +6,9 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 
 ###  Benchmarks (in N-Triples): 
 
-1.[LUBM](https://github.com/rvesse/lubm-uba) - `./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
-2.[BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) - `./generate -fc -s nt -fn dataset_10MB -pc 100`
-3.[DBpedia](http://benchmark.dbpedia.org/)
+- [LUBM](https://github.com/rvesse/lubm-uba) - `./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
+- [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) - `./generate -fc -s nt -fn dataset_10MB -pc 100`
+- [DBpedia](http://benchmark.dbpedia.org/)
 
 ### Application Settings
 
