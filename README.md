@@ -6,26 +6,9 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 
 ###  Benchmarks (in N-Triples): 
 
-1. LUBM
-    1. Clone this project: [LUBM](https://github.com/rvesse/lubm-uba)
-    2. Run Commands
-    ```
-    ./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8
-    ./generate.sh --quiet --timing -u 10 --format NTRIPLES  --consolidate Maximal --threads 8
-    ./generate.sh --quiet --timing -u 100 --format NTRIPLES  --consolidate Maximal --threads 8
-    ```
-
-2. BSBM
-    1. Download the BSBM tool: [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download)
-    2. Unzip and Go inside the folder
-    3. Run Command
-    ```
-    ./generate -fc -s nt -fn dataset_10MB -pc 100
-    ./generate -fc -s nt -fn dataset_100MB -pc 1000
-    ./generate -fc -s nt -fn dataset_1GB -pc 10000
-    ```
-3. DBpedia - [Datasets](http://benchmark.dbpedia.org/)
-
+1.[LUBM](https://github.com/rvesse/lubm-uba) - `./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
+2.[BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) - `./generate -fc -s nt -fn dataset_10MB -pc 100`
+3.[DBpedia](http://benchmark.dbpedia.org/)
 
 ### Application Settings
 
