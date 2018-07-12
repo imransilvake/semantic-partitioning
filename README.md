@@ -4,13 +4,14 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
 
 
-###  Benchmarks (in N-Triples): 
+##  Benchmarks (in N-Triples): 
 
 - [LUBM](https://github.com/rvesse/lubm-uba) - `./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
 - [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) - `./generate -fc -s nt -fn dataset_10MB -pc 100`
 - [DBpedia](http://benchmark.dbpedia.org/)
 
-### Application Settings
+
+## Application Settings
 
 #### VM Options
 ```
@@ -26,7 +27,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 ```
 
 
-### SPARQL Operators
+## SPARQL Operators
 ###### Note: All operators are case insensitive
  - **Mandatory**: ```SELECT, WHERE```
  - **Optional**: ```LIMIT, UNION, FILTER```
@@ -40,12 +41,12 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
  - **SPARQL Tests:** ```isURI, isBlank, isLiteral```
  - **SPARQL Accessors:** ```lang, datatype```
 
-###### Single Line
+#### Single Line
 ```    
 FILTER (?X == <http://www.Department6.University0.edu/UndergraduateStudent103>)
 ```
     
-###### Multi Line
+#### Multi Line
 ```    
 FILTER (
     ?X == <http://www.Department6.University0.edu/UndergraduateStudent103> &&
@@ -54,11 +55,11 @@ FILTER (
 ```
 
 
-### SPARQL Queries
+## SPARQL Queries
 - Strictly follow the pattern of SPARQL queries in order to avoid errors.
 - Examples shown below are related to LUBM benchmark.
 
-###### Simple Query with LIMIT
+#### Simple Query with LIMIT
 ```
 SELECT ?author ?publication
 WHERE {
@@ -67,7 +68,7 @@ WHERE {
 LIMIT 20
 ```
 
-###### UNION of two Queries
+#### UNION of two Queries
 ```
 SELECT *
 WHERE {
@@ -80,7 +81,7 @@ WHERE {
 }
 ```
 
-###### Query with FILTER
+#### Query with FILTER
 ```
 SELECT ?X
 WHERE {
@@ -91,7 +92,7 @@ WHERE {
 ```
 
 
-### Submitting Applications
+## Submitting Applications
 An example of how to run the app on the cluster.
 
 #### Local `master("local[*]")`
@@ -121,7 +122,7 @@ hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
 ```
 
 
-### Useful Commands
+## Useful Commands
 
 #### General
 - Check running processes: `jps`
@@ -140,7 +141,7 @@ hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
 - Run Spark Shell: `spark-shell`
 
 
-### Future Work
+## Future Work
  - Implement Prefix for SPARQL queries
  - Add more operators
  - Add support in FILTER: 
