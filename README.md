@@ -32,14 +32,12 @@ Note: All operators are case insensitive
 
  - **Mandatory**: ```SELECT, WHERE```
  - **Optional**: ```LIMIT, UNION, FILTER```
-
-#### LIMIT - Only accepts **Integer** value
-
-#### FILTER
- - **Logical:** ```!, &&, ||```
- - **Comparison:** ```<, >, = or ==, >=, <=, !=```
- - **SPARQL Tests:** ```isURI, isBlank, isLiteral```
- - **SPARQL Accessors:** ```lang, datatype```
+	- LIMIT - Only accepts **Integer** value
+	- FILTER
+		 - **Logical:** ```!, &&, ||```
+		 - **Comparison:** ```<, >, = or ==, >=, <=, !=```
+		 - **SPARQL Tests:** ```isURI, isBlank, isLiteral```
+		 - **SPARQL Accessors:** ```lang, datatype```
 
 #### Single Line
 ```    
