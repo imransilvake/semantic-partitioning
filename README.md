@@ -28,7 +28,8 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 
 
 ## SPARQL Operators
-###### Note: All operators are case insensitive
+Note: All operators are case insensitive
+
  - **Mandatory**: ```SELECT, WHERE```
  - **Optional**: ```LIMIT, UNION, FILTER```
 
