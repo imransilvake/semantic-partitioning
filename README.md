@@ -100,7 +100,6 @@ WHERE {
 An example of how to run the app on the cluster.
 
 #### Local `master("local[*]")`
-###### Without HDFS
 ```
 spark-submit \
 --class net.sansa_stack.semantic_partitioning.Semantic \
