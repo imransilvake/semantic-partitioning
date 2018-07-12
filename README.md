@@ -61,7 +61,7 @@ FILTER (
 
 ### SPARQL Queries
 - Strictly follow the pattern of SPARQL queries in order to avoid errors.
-- Examples shown below are related to LUBM benchmark
+- Examples shown below are related to LUBM benchmark.
 
 ###### Simple Query with LIMIT
 ```
