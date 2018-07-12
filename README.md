@@ -60,28 +60,19 @@ FILTER (
 
 
 ### SPARQL Queries
-#### Important: Strictly follow the pattern of SPARQL queries in order to avoid errors.
-###### Note: Examples shown below are related to LUBM benchmark
+- Strictly follow the pattern of SPARQL queries in order to avoid errors.
+- Examples shown below are related to LUBM benchmark
 
-
-###### Simple Query
+###### Simple Query with LIMIT
 ```
 SELECT ?author ?publication
-WHERE {
-	?publication :publicationAuthor ?author .
-}
-```
-
-###### Query with LIMIT
-```
-SELECT *
 WHERE {
 	?publication :publicationAuthor ?author .
 }
 LIMIT 20
 ```
 
-###### UNION of two (or more) Queries
+###### UNION of two Queries
 ```
 SELECT *
 WHERE {
