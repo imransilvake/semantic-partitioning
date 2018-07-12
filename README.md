@@ -32,8 +32,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
  - **Mandatory**: ```SELECT, WHERE```
  - **Optional**: ```LIMIT, UNION, FILTER```
 
-#### LIMIT
- - Only accepts **Integer** value
+#### LIMIT - Only accepts **Integer** value
 
 #### FILTER
  - **Logical:** ```!, &&, ||```
