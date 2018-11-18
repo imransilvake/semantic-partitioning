@@ -3,6 +3,8 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
 
+Read: [Scala & Spark](content/learn-scala-spark/README.md)
+
 
 ##  Benchmarks (in N-Triples): 
 
