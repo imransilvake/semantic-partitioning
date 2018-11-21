@@ -1,5 +1,5 @@
 # Semantic Partitioning
-SANSA Semantic Partitioning is a scalable and highly efficient application that first perform in-memory RDF Data (N-Triples) Partition and then pass the partitioning data to the SPARQL Query Engine layer to get efficient results. It is built on top of [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
+SANSA Semantic Partitioning is a scalable and highly efficient application that first perform in-memory RDF Data (N-Triples) Partition and then pass the partitioning data to the SPARQL Query Engine layer to get efficient results. It is built on top of [SANSA-Stack](https://github.com/SANSA-Stack) using the Scala and Spark technologies.
 
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
 
