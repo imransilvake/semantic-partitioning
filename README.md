@@ -1,4 +1,4 @@
-# SP - RDF Data Partition and Query System
+# Semantic Partition
 SANSA Semantic Partitioning is a scalable and highly efficient application that first perform in-memory RDF Data (N-Triples) Partitioning technique and then pass the partitioning data to the SPARQL Query Engine layer to get efficient results. It is built on top of [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
 
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
@@ -8,9 +8,9 @@ Read: [Scala & Spark](content/learn-scala-spark/README.md)
 
 ##  Benchmarks (N-Triples): 
 
-- [LUBM](https://github.com/rvesse/lubm-uba) - `./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
-- [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) - `./generate -fc -s nt -fn dataset_10MB -pc 100`
-- [DBpedia](http://benchmark.dbpedia.org/)
+- [LUBM](https://github.com/rvesse/lubm-uba) `(./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8)`
+- [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) `(./generate -fc -s nt -fn dataset_10MB -pc 100)`
+- [DBpedia](http://benchmark.dbpedia.org/) `direct download`
 
 
 ## Application Settings
