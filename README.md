@@ -1,5 +1,5 @@
-# Efficient and Scalable in-memory Partitioning for RDF Data
-RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
+# SANSA - Semantic Partitioning
+SANSA Semantic Partitioning is a scalable and highly efficient application that first perform in-memory RDF Data (N-Triples) Partitioning technique and then pass the partitioning data to the SPARQL Query Engine layer to get efficient results. It is built on top of [SANSA-Stack](https://github.com/SANSA-Stack) using Scala and Spark.
 
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
 
@@ -55,10 +55,11 @@ FILTER (
 
 
 ## SPARQL Queries
-- Strictly follow the pattern of SPARQL queries in order to avoid errors.
-- Examples shown below are related to LUBM benchmark.
+It is recommended to follow the patterns of SPARQL queries strictly (in order to avoid errors).
 
 #### Examples
+Examples shown below are related to LUBM benchmark.
+
 ###### Simple Query with LIMIT
 ```
 SELECT ?author ?publication
