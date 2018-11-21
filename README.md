@@ -38,7 +38,7 @@ Note: All operators are case insensitive
 		 - **SPARQL Tests:** ```isURI, isBlank, isLiteral```
 		 - **SPARQL Accessors:** ```lang, datatype```
 
-#### FILTER
+#### FILTER Operator
 ###### Single Line
 ```    
 FILTER (?X == <http://www.Department6.University0.edu/UndergraduateStudent103>)
