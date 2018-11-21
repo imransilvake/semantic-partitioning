@@ -6,7 +6,7 @@ RDF Data (N-Triples) Partition and SPARQL Query Layer for [SANSA-Stack](https://
 Read: [Scala & Spark](content/learn-scala-spark/README.md)
 
 
-##  Benchmarks (in N-Triples): 
+##  Benchmarks (N-Triples): 
 
 - [LUBM](https://github.com/rvesse/lubm-uba) - `./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
 - [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) - `./generate -fc -s nt -fn dataset_10MB -pc 100`
@@ -14,7 +14,6 @@ Read: [Scala & Spark](content/learn-scala-spark/README.md)
 
 
 ## Application Settings
-
 #### VM Options
 ```
 -DLogFilePath=/SANSA-Semantic-Partitioning/src/main/resources/log/console.log
@@ -31,7 +30,6 @@ Read: [Scala & Spark](content/learn-scala-spark/README.md)
 
 ## SPARQL Operators
 Note: All operators are case insensitive
-
  - **Mandatory**: ```SELECT, WHERE```
  - **Optional**: ```LIMIT, UNION, FILTER```
 	- LIMIT - Only accepts **Integer** value
@@ -41,12 +39,13 @@ Note: All operators are case insensitive
 		 - **SPARQL Tests:** ```isURI, isBlank, isLiteral```
 		 - **SPARQL Accessors:** ```lang, datatype```
 
-#### Single Line
+#### FILTER
+###### Single Line
 ```    
 FILTER (?X == <http://www.Department6.University0.edu/UndergraduateStudent103>)
 ```
-    
-#### Multi Line
+
+###### Multi Line
 ```    
 FILTER (
     ?X == <http://www.Department6.University0.edu/UndergraduateStudent103> &&
@@ -59,7 +58,8 @@ FILTER (
 - Strictly follow the pattern of SPARQL queries in order to avoid errors.
 - Examples shown below are related to LUBM benchmark.
 
-#### Simple Query with LIMIT
+#### Examples
+###### Simple Query with LIMIT
 ```
 SELECT ?author ?publication
 WHERE {
@@ -68,7 +68,7 @@ WHERE {
 LIMIT 20
 ```
 
-#### UNION of two Queries
+###### UNION of two Queries
 ```
 SELECT *
 WHERE {
@@ -81,7 +81,7 @@ WHERE {
 }
 ```
 
-#### Query with FILTER
+###### Query with FILTER
 ```
 SELECT ?X
 WHERE {
@@ -123,7 +123,6 @@ hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
 
 
 ## Useful Commands
-
 #### General
 - Check running processes: `jps`
 - Kill process: `kill -9 PID`
