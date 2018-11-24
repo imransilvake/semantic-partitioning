@@ -54,11 +54,11 @@ FILTER (
 
 
 ## SPARQL Queries
-Read here: [Deploy](documentation/queries.md)
+Read here: [SPARQL Queries](documentation/queries.md)
 
 
 ## Deploy App on Cluster
-Read here: [Deploy](documentation/deployment.md)
+Read here: [App Deploy](documentation/deployment.md)
 
 
 ## Useful Commands
