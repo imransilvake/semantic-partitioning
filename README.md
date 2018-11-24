@@ -7,9 +7,12 @@ Read: [Scala & Spark](content/learn-scala-spark/README.md)
 
 
 ##  Benchmarks (N-Triples): 
-- [LUBM](https://github.com/rvesse/lubm-uba) `(./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8)`
-- [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) `(./generate -fc -s nt -fn dataset_10MB -pc 100)`
-- [DBpedia](http://benchmark.dbpedia.org/) `direct download`
+### [LUBM](https://github.com/rvesse/lubm-uba) 
+`./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
+### [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) 
+`./generate -fc -s nt -fn dataset_10MB -pc 100`
+### [DBpedia](http://benchmark.dbpedia.org/)
+`direct download`
 
 
 ## Application Settings
@@ -28,29 +31,7 @@ Read: [Scala & Spark](content/learn-scala-spark/README.md)
 
 
 ## SPARQL Operators
-Note: All operators are case insensitive
- - **Mandatory**: ```SELECT, WHERE```
- - **Optional**: ```LIMIT, UNION, FILTER```
-	- LIMIT - Only accepts **Integer** value
-	- FILTER
-		 - **Logical:** ```!, &&, ||```
-		 - **Comparison:** ```<, >, = or ==, >=, <=, !=```
-		 - **SPARQL Tests:** ```isURI, isBlank, isLiteral```
-		 - **SPARQL Accessors:** ```lang, datatype```
-
-#### FILTER Operator
-###### Single Line
-```    
-FILTER (?X == <http://www.Department6.University0.edu/UndergraduateStudent103>)
-```
-
-###### Multi Line
-```    
-FILTER (
-    ?X == <http://www.Department6.University0.edu/UndergraduateStudent103> &&
-    ?Z = <http://www.Department6.University0.edu/Course1>
-)
-```
+Read here: [SPARQL Operators](documentation/operators.md)
 
 
 ## SPARQL Queries
