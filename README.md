@@ -6,7 +6,9 @@ SANSA Semantic Partitioning is a scalable and highly efficient application that 
 Read: [Scala & Spark](content/learn-scala-spark/README.md)
 
 
-##  Benchmarks (N-Triples): 
+##  Benchmarks: 
+The datasets should be in N-Triples format.
+
 ### [LUBM](https://github.com/rvesse/lubm-uba) 
 `./generate.sh --quiet --timing -u 1 --format NTRIPLES  --consolidate Maximal --threads 8`
 ### [BSBM](https://sourceforge.net/projects/bsbmtools/files/bsbmtools/bsbmtools-0.2/bsbmtools-v0.2.zip/download) 
