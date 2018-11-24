@@ -1,7 +1,8 @@
 # Deploy Application on Cluster
 An example of how to run the app on the cluster.
 
-## Local `master("local[*]")`
+## Local
+master: `local[*]`
 ```
 spark-submit \
 --class net.sansa_stack.semantic_partitioning.Semantic \
@@ -14,7 +15,8 @@ spark-submit \
 --output /output/results-data/
 ```
 
-## Standalone Cluster `master("spark://172.18.160.16:3077")`
+## Standalone Cluster
+master `spark://172.18.160.16:3077`
 ```
 spark-submit \
 --class net.sansa_stack.semantic_partitioning.Semantic \
