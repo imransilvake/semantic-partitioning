@@ -3,7 +3,7 @@ SANSA Semantic Partitioning is a scalable and highly efficient application that 
 
 ![Alt text](preview.png?raw=true "Semantic Partitioning")
 
-Read: [Scala & Spark](content/learn-scala-spark/README.md)
+Read here: [Scala & Spark](content/learn-scala-spark/README.md)
 
 
 ##  Benchmarks: 
