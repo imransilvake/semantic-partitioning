@@ -6,7 +6,7 @@ SANSA Semantic Partitioning is a scalable and highly efficient application that 
 Read here: [Scala & Spark](content/learn-scala-spark/README.md)
 
 
-##  Benchmarks: 
+##  Benchmarks
 The datasets should be in N-Triples format.
 
 ### [LUBM](https://github.com/rvesse/lubm-uba) 
@@ -18,12 +18,13 @@ The datasets should be in N-Triples format.
 
 
 ## Application Settings
-#### VM Options
+
+### VM Options
 ```
 -DLogFilePath=/SANSA-Semantic-Partitioning/src/main/resources/log/console.log
 ```
 
-#### Program Arguments
+### Program Arguments
 ```
 --input /SANSA-Semantic-Partitioning/src/main/resources/input/lubm/sample.nt
 --queries /SANSA-Semantic-Partitioning/src/main/resources/queries/lubm/query-01.txt
