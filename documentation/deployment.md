@@ -1,7 +1,9 @@
 # Deploy Application on Cluster
-An example of how to run the app on the cluster.
+Once a user application is bundled, it can be launched using the bin/spark-submit script. This script takes care of setting up the classpath with Spark and its dependencies, and can support different cluster managers and deploy modes that Spark supports.
 
-## Local
+## Examples
+
+### Local
 master: `local[*]`
 ```
 spark-submit \
@@ -15,7 +17,7 @@ spark-submit \
 --output /output/results-data/
 ```
 
-## Standalone Cluster
+### Standalone Cluster
 master `spark://172.18.160.16:3077`
 ```
 spark-submit \
@@ -28,3 +30,21 @@ hdfs://172.18.160.17:54310/ImranKhan/apps/semantic/app.jar \
 --partitions /data/home/ImranKhan/partitioned-data/ \
 --output /data/home/ImranKhan/results-data/
 ```
+
+## Useful Commands
+
+### General
+- Check running processes: `jps`
+- Kill process: `kill -9 PID`
+- Copy from local to remote: `scp -r /path/to/file UserName@server.com:/path/to/destination`
+
+### Hadoop
+- Check Hadoop hostname and port: `hdfs getconf -confKey fs.default.name`
+- Put files on HDFS: `Hadoop fs -put file path`
+- Check files on HDFS: `Hadoop fs -ls /`
+- Remove Files on HDFS: `hadoop fs -rm -R path`
+- Make a directory on HDFS: `hadoop fs -mkdir path`
+- Move location on HDFS: `hadoop fs -mv source destination`
+
+### Spark
+- Run Spark Shell: `spark-shell`
