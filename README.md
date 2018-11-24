@@ -61,24 +61,6 @@ Read here: [SPARQL Queries](documentation/queries.md)
 Read here: [App Deploy](documentation/deployment.md)
 
 
-## Useful Commands
-#### General
-- Check running processes: `jps`
-- Kill process: `kill -9 PID`
-- Copy from local to remote: `scp -r /path/to/file UserName@server.com:/path/to/destination`
-
-#### Hadoop
-- Check Hadoop hostname and port: `hdfs getconf -confKey fs.default.name`
-- Put files on HDFS: `Hadoop fs -put file path`
-- Check files on HDFS: `Hadoop fs -ls /`
-- Remove Files on HDFS: `hadoop fs -rm -R path`
-- Make a directory on HDFS: `hadoop fs -mkdir path`
-- Move location on HDFS: `hadoop fs -mv source destination`
-
-#### Spark
-- Run Spark Shell: `spark-shell`
-
-
 ## Future Work
  - Implement Prefix for SPARQL queries
  - Add more operators
